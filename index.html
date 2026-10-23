@@ -1566,17 +1566,7 @@ pages['dashboard']=async()=>{
       <i class="ti ti-credit-card stat-icon"></i>
     </div>
   </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-    <div class="table-wrap">
-      <div style="padding:12px 14px;border-bottom:1px solid var(--border)"><b style="font-family:var(--font-display);font-size:13px"><i class="ti ti-engine" style="color:var(--orange)"></i> Antrian WO</b></div>
-      <div id="d-wo-list" style="padding:10px;min-height:80px;font-size:13px;color:var(--text3);display:flex;align-items:center;justify-content:center">Memuat...</div>
-    </div>
-    <div class="table-wrap">
-      <div style="padding:12px 14px;border-bottom:1px solid var(--border)"><b style="font-family:var(--font-display);font-size:13px"><i class="ti ti-alert-triangle" style="color:var(--orange)"></i> Alert</b></div>
-      <div id="d-alerts" style="padding:10px;min-height:80px;font-size:13px;color:var(--text3);display:flex;align-items:center;justify-content:center">Memuat...</div>
-    </div>
-  </div>
-`;
+ `;
   const td=today();
   // Load semua data parallel — pjAll & woAll semua data (bukan filter hari ini)
   const [pjAll,woAll,brg,penAll] = await Promise.all([
