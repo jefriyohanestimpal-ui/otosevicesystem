@@ -6152,50 +6152,6 @@ window.addEventListener('DOMContentLoaded', async()=>{
   if(!isResetLink) init();
   initLogin3D();
 });
-
-// Fungsi untuk menyembunyikan tombol Edit & Hapus berdasarkan role
-async function sembunyikanTombolBerdasarkanRole() {
-    try {
-        const { data: { user } } = await supabase.auth.getUser();
-        
-        if (!user) return;
-        
-        const { data: profil } = await supabase
-            .from('profil_pengguna')
-            .select('role')
-            .eq('id', user.id)
-            .single();
-        
-        const roleUser = profil?.role;
-        console.log('Role user:', roleUser);
-        
-        // Jika kasir atau mekanik, sembunyikan tombol Edit & Hapus
-        if (roleUser === 'kasir' || roleUser === 'mekanik') {
-            // Cari semua tombol hapus di tabel
-            const semuaTombolHapus = document.querySelectorAll('button');
-            
-            semuaTombolHapus.forEach(btn => {
-                // Cek apakah tombol ini adalah tombol hapus
-                const teksTombol = btn.textContent.toLowerCase();
-                const adaIconHapus = btn.querySelector('svg') || btn.innerHTML.includes('trash') || btn.innerHTML.includes('delete');
-                
-                if (teksTombol.includes('hapus') || teksTombol.includes('delete') || adaIconHapus) {
-                    btn.style.display = 'none';
-                    btn.disabled = true;
-                    console.log('Tombol hapus disembunyikan');
-                }
-            });
-        }
-    } catch (error) {
-        console.error('Error cek role:', error);
-    }
-}
-
-// Jalankan saat halaman selesai dimuat
-document.addEventListener('DOMContentLoaded', sembunyikanTombolBerdasarkanRole);
-
-// Jika aplikasi menggunakan SPA (tanpa reload), panggil juga setelah navigasi
-// Contoh: setTimeout(sembunyikanTombolBerdasarkanRole, 1000);  
 </script>
 </body>
 </html>
